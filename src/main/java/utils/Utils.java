@@ -17,4 +17,8 @@ public class Utils {
             return 50.0;
         }
     }
+
+    public static Double getTotalTimeInHours(long issueTime) {
+        return (System.currentTimeMillis() - issueTime)/3600000.0;
+    }
 }

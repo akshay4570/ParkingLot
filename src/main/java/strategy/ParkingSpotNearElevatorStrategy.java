@@ -7,7 +7,7 @@ public class ParkingSpotNearElevatorStrategy implements ParkingAssignmentStrateg
 
     @Override
     public ParkingSpot getParkingSpot(Terminal terminal) {
-
+        return null;
     }
 
     @Override

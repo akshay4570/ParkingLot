@@ -11,6 +11,7 @@ public class ParkingSpotNearEntranceStrategy implements ParkingAssignmentStrateg
 
     private Map<String, PriorityQueue<ParkingSpot> > mapTerminalParkingSpot;
     private Set<String> setAvailableSpots;
+    private Set<String> setReservedSpots;
 
     @Override
     public ParkingSpot getParkingSpot(Terminal terminal) {
