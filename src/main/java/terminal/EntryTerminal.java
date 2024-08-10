@@ -2,10 +2,7 @@ package terminal;
 
 import model.Ticket;
 import parkingspot.ParkingSpot;
-import strategy.ParkingAssignmentStrategy;
 import system.ParkingLotSystem;
-import system.ParkingLotSystemFactory;
-import terminal.Terminal;
 
 public class EntryTerminal extends Terminal {
 
