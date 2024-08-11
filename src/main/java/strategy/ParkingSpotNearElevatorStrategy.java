@@ -1,7 +1,10 @@
 package strategy;
 
+import parkingspot.ParkingSportWithDistance;
 import parkingspot.ParkingSpot;
 import terminal.Terminal;
+
+import java.util.List;
 
 public class ParkingSpotNearElevatorStrategy implements ParkingAssignmentStrategy{
 
@@ -11,7 +14,12 @@ public class ParkingSpotNearElevatorStrategy implements ParkingAssignmentStrateg
     }
 
     @Override
-    public void releaseParkingSpot(ParkingSpot parkingSpot) {
+    public void releaseParkingSpot(ParkingSportWithDistance parkingSpot) {
+
+    }
+
+    @Override
+    public void setup(List<Terminal> listTerminal, List<ParkingSpot> listParkingSpot) {
 
     }
 }

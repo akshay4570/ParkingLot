@@ -8,7 +8,9 @@ import terminal.ExitTerminal;
 import terminal.Terminal;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ParkingLotSystemFactory {
 
@@ -34,13 +36,13 @@ public class ParkingLotSystemFactory {
         return parkingLotSystem;
     }
 
-    private static List<Double> calculateDistanceFromTerminals(List<Terminal> listTerminal) {
-        List<Double> listDist = new ArrayList<>(listTerminal.size());
+    private static Map<String, Double> calculateDistanceFromTerminals(List<Terminal> listTerminal) {
+        Map<String, Double> mapDist = new HashMap<>();
         for(Terminal objTerminal : listTerminal){
             //Use some metrics to calculate Distance just populated Dummy values;
             Double dist = 1.0;
-            listDist.add(dist);
+            mapDist.put(objTerminal.getId(), dist);
         }
-        return listDist;
+        return mapDist;
     }
 }

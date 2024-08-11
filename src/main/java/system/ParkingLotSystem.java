@@ -38,6 +38,7 @@ public class ParkingLotSystem {
         this.listParkingSpot = listParkingSpot;
         this.payment = payment;
         this.parkingAssignmentStrategy = parkingAssignmentStrategy;
+        this.parkingAssignmentStrategy.setup(listTerminal, listParkingSpot);
     }
 
     public ParkingSpot getParkingSpot(EntryTerminal entryTerminal) {

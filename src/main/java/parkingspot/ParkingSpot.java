@@ -9,9 +9,9 @@ public abstract class ParkingSpot {
     private String id;
     private Double size;
     private Boolean reserveSpot;
-    private List<Double> distFromTerminals;
+    private Map<String, Double> distFromTerminals;
 
-    public ParkingSpot(List<Double> distFromTerminals) {
+    public ParkingSpot(Map<String, Double> distFromTerminals) {
         this.id = UUID.randomUUID().toString();
         this.size = 100.0;
         this.reserveSpot = false;
@@ -30,7 +30,8 @@ public abstract class ParkingSpot {
         return reserveSpot;
     }
 
-    public List<Double> getDistFromTerminals() {
+    public Map<String, Double> getDistFromTerminals() {
         return distFromTerminals;
     }
+
 }
