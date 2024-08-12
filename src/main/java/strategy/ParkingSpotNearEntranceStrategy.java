@@ -61,7 +61,13 @@ public class ParkingSpotNearEntranceStrategy implements ParkingAssignmentStrateg
         setReservedSpots.remove(parkingSpot.getParkingSpot().getId());
         for(String key : mapTerminalCopy.keySet()){
             if(mapTerminalCopy.containsKey(key) && !mapTerminalCopy.get(key).contains(parkingSpot.getParkingSpot().getId())){
-                mapTerminalParkingSpot.get(key).offer(parkingSpot);
+                if(mapTerminalParkingSpot.containsKey(key) && mapTerminalParkingSpot.get(key) != null){
+                    System.out.println();
+                    mapTerminalParkingSpot.get(key).add(parkingSpot);
+                }else{
+                    PriorityQueue<ParkingSportWithDistance> priorityQueue = new PriorityQueue<>(Comparator.comparing(ParkingSportWithDistance::getDist));
+                    mapTerminalParkingSpot.put(key, priorityQueue);
+                }
                 mapTerminalCopy.get(key).add(parkingSpot.getParkingSpot().getId());
             }
         }
@@ -79,7 +85,7 @@ public class ParkingSpotNearEntranceStrategy implements ParkingAssignmentStrateg
                     mapTerminalParkingSpot.get(key).offer(new ParkingSportWithDistance(dist, parkingSpot));
                     mapTerminalCopy.get(key).add(parkingSpot.getId());
                 }else{
-                    PriorityQueue<ParkingSportWithDistance> priorityQueue = new PriorityQueue<>();
+                    PriorityQueue<ParkingSportWithDistance> priorityQueue = new PriorityQueue<>(Comparator.comparing(ParkingSportWithDistance::getDist));
                     priorityQueue.offer(new ParkingSportWithDistance(dist, parkingSpot));
                     mapTerminalParkingSpot.put(key, priorityQueue);
                     Set<String> setParkingSpot = ConcurrentHashMap.newKeySet();

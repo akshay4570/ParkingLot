@@ -3,6 +3,7 @@ package system;
 import amount.AmountCalculator;
 import amount.AmountCalculatorFactory;
 import model.Ticket;
+import parkingspot.ParkingSportWithDistance;
 import parkingspot.ParkingSpot;
 import payment.Payment;
 import strategy.ParkingAssignmentStrategy;
@@ -17,6 +18,22 @@ public class ParkingLotSystem {
     private List<ParkingSpot> listParkingSpot;
     private Payment payment;
     private ParkingAssignmentStrategy parkingAssignmentStrategy;
+
+    public List<Terminal> getListTerminal() {
+        return listTerminal;
+    }
+
+    public List<ParkingSpot> getListParkingSpot() {
+        return listParkingSpot;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public ParkingAssignmentStrategy getParkingAssignmentStrategy() {
+        return parkingAssignmentStrategy;
+    }
 
     private static ParkingLotSystem parkingLotSystem = null;
     private ParkingLotSystem(){
@@ -49,7 +66,7 @@ public class ParkingLotSystem {
         AmountCalculator amountCalculator = AmountCalculatorFactory.getAmountCalculator();
         Double amountToBePaid = amountCalculator.calculateTotalAmount(Utils.getTotalTimeInHours(ticket.getIssueTime()), ticket.getParkingSpot());
         payment.process(amountToBePaid);
-        parkingAssignmentStrategy.releaseParkingSpot(ticket.getParkingSpot());
+        parkingAssignmentStrategy.releaseParkingSpot(new ParkingSportWithDistance(ticket.getParkingSpot().getDistFromTerminals().get(ticket.getId()), ticket.getParkingSpot()));
         return payment;
     }
 }

@@ -4,7 +4,13 @@ import model.Ticket;
 import parkingspot.ParkingSpot;
 import system.ParkingLotSystem;
 
+import java.util.UUID;
+
 public class EntryTerminal extends Terminal {
+
+    public EntryTerminal() {
+        super(UUID.randomUUID().toString());
+    }
 
     public Ticket getTicket(){
         return generateTicket(assignParkingSpot());

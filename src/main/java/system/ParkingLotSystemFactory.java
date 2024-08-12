@@ -19,16 +19,17 @@ public class ParkingLotSystemFactory {
         List<Terminal> listTerminal = new ArrayList<>(2*numOfTerminals);
         //Alternatively Creating Entry and Exit Terminals
         for(int i=0;i<numOfTerminals;i++){
-            listTerminal.set(i, new EntryTerminal());
-            listTerminal.set(i+1, new ExitTerminal());
+            listTerminal.add(new EntryTerminal());
+            listTerminal.add(new ExitTerminal());
         }
+        System.out.println(listTerminal.size());
         List<ParkingSpot> listParkingSpot = new ArrayList<>(totalParkingSpots);
         //Creating all the Parking Types in a Round Robin Manner
         for(int i=0;i<totalParkingSpots/4;i++){
-            listParkingSpot.set(i, new TwoWheelerParking(calculateDistanceFromTerminals(listTerminal)));
-            listParkingSpot.set(i+1, new FourWheelerParking(calculateDistanceFromTerminals(listTerminal)));
-            listParkingSpot.set(i+2, new HandicappedParking(calculateDistanceFromTerminals(listTerminal)));
-            listParkingSpot.set(i+3, new MiscellaneousParking(calculateDistanceFromTerminals(listTerminal)));
+            listParkingSpot.add(new TwoWheelerParking(calculateDistanceFromTerminals(listTerminal)));
+            listParkingSpot.add(new FourWheelerParking(calculateDistanceFromTerminals(listTerminal)));
+            listParkingSpot.add(new HandicappedParking(calculateDistanceFromTerminals(listTerminal)));
+            listParkingSpot.add(new MiscellaneousParking(calculateDistanceFromTerminals(listTerminal)));
         }
 
         ParkingLotSystem parkingLotSystem = ParkingLotSystem.getInstance();

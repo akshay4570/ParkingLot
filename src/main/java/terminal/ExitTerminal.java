@@ -8,7 +8,13 @@ import payment.UPIPayment;
 import system.ParkingLotSystem;
 import terminal.Terminal;
 
+import java.util.UUID;
+
 public class ExitTerminal extends Terminal {
+
+    public ExitTerminal() {
+        super(UUID.randomUUID().toString());
+    }
 
     public Payment showTicket(Ticket ticket){
         ParkingLotSystem parkingLotSystem = getParkingLotSystem();

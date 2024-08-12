@@ -8,6 +8,9 @@ import system.ParkingLotSystemFactory;
 import terminal.EntryTerminal;
 import terminal.Terminal;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -17,9 +20,14 @@ public class Main {
                 4,
                 10000
         );
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
         EntryTerminal entryTerminal = new EntryTerminal();
-        ParkingSpot parkingSpot = parkingLotSystem.getParkingSpot(entryTerminal);
-        Ticket ticket = entryTerminal.getTicket();
-        Payment payment = parkingLotSystem.getPaymentForParking(ticket);
+        executorService.submit(() -> {
+            ParkingSpot parkingSpot = parkingLotSystem.getParkingSpot(entryTerminal);
+            Ticket ticket = entryTerminal.getTicket();
+            System.out.println("Get the Ticket and Park the Vehicle");
+            Payment payment = parkingLotSystem.getPaymentForParking(ticket);
+            System.out.println("Release the spot and receive the amount");
+        });
     }
 }
