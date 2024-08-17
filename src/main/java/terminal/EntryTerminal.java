@@ -21,6 +21,6 @@ public class EntryTerminal extends Terminal {
     }
 
     private Ticket generateTicket(ParkingSpot parkingSpot){
-        return new Ticket(parkingSpot);
+        return new Ticket(parkingSpot, this);
     }
 }

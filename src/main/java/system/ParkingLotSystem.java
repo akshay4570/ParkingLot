@@ -19,6 +19,11 @@ public class ParkingLotSystem {
     private Payment payment;
     private ParkingAssignmentStrategy parkingAssignmentStrategy;
 
+    private static volatile ParkingLotSystem parkingLotSystem;
+
+    private ParkingLotSystem(){
+    }
+
     public List<Terminal> getListTerminal() {
         return listTerminal;
     }
@@ -33,10 +38,6 @@ public class ParkingLotSystem {
 
     public ParkingAssignmentStrategy getParkingAssignmentStrategy() {
         return parkingAssignmentStrategy;
-    }
-
-    private static ParkingLotSystem parkingLotSystem = null;
-    private ParkingLotSystem(){
     }
 
     public static ParkingLotSystem getInstance() {
@@ -66,7 +67,7 @@ public class ParkingLotSystem {
         AmountCalculator amountCalculator = AmountCalculatorFactory.getAmountCalculator();
         Double amountToBePaid = amountCalculator.calculateTotalAmount(Utils.getTotalTimeInHours(ticket.getIssueTime()), ticket.getParkingSpot());
         payment.process(amountToBePaid);
-        parkingAssignmentStrategy.releaseParkingSpot(new ParkingSportWithDistance(ticket.getParkingSpot().getDistFromTerminals().get(ticket.getId()), ticket.getParkingSpot()));
+        parkingAssignmentStrategy.releaseParkingSpot(new ParkingSportWithDistance(ticket.getParkingSpot().getDistFromTerminals().get(ticket.getTerminal().getId()), ticket.getParkingSpot()));
         return payment;
     }
 }

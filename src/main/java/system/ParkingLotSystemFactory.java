@@ -25,11 +25,13 @@ public class ParkingLotSystemFactory {
         System.out.println(listTerminal.size());
         List<ParkingSpot> listParkingSpot = new ArrayList<>(totalParkingSpots);
         //Creating all the Parking Types in a Round Robin Manner
+        Double dist = 1.0;
         for(int i=0;i<totalParkingSpots/4;i++){
-            listParkingSpot.add(new TwoWheelerParking(calculateDistanceFromTerminals(listTerminal)));
-            listParkingSpot.add(new FourWheelerParking(calculateDistanceFromTerminals(listTerminal)));
-            listParkingSpot.add(new HandicappedParking(calculateDistanceFromTerminals(listTerminal)));
-            listParkingSpot.add(new MiscellaneousParking(calculateDistanceFromTerminals(listTerminal)));
+            listParkingSpot.add(new TwoWheelerParking(calculateDistanceFromTerminals(listTerminal,dist)));
+            listParkingSpot.add(new FourWheelerParking(calculateDistanceFromTerminals(listTerminal,dist+1)));
+            listParkingSpot.add(new HandicappedParking(calculateDistanceFromTerminals(listTerminal,dist+2)));
+            listParkingSpot.add(new MiscellaneousParking(calculateDistanceFromTerminals(listTerminal,dist+3)));
+            dist += 4;
         }
 
         ParkingLotSystem parkingLotSystem = ParkingLotSystem.getInstance();
@@ -37,12 +39,13 @@ public class ParkingLotSystemFactory {
         return parkingLotSystem;
     }
 
-    private static Map<String, Double> calculateDistanceFromTerminals(List<Terminal> listTerminal) {
+    private static Map<String, Double> calculateDistanceFromTerminals(List<Terminal> listTerminal, Double dist) {
         Map<String, Double> mapDist = new HashMap<>();
+        Double distTemp = dist;
         for(Terminal objTerminal : listTerminal){
             //Use some metrics to calculate Distance just populated Dummy values;
-            Double dist = 1.0;
-            mapDist.put(objTerminal.getId(), dist);
+            mapDist.put(objTerminal.getId(), distTemp);
+            distTemp++;
         }
         return mapDist;
     }

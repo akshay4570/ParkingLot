@@ -1,12 +1,8 @@
 package terminal;
 
-import amount.AmountCalculator;
-import amount.AmountCalculatorFactory;
 import model.Ticket;
 import payment.Payment;
-import payment.UPIPayment;
 import system.ParkingLotSystem;
-import terminal.Terminal;
 
 import java.util.UUID;
 

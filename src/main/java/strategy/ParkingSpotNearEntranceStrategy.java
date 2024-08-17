@@ -51,6 +51,7 @@ public class ParkingSpotNearEntranceStrategy implements ParkingAssignmentStrateg
             }
         }catch (Exception e){
             System.out.println("Exception " +e.getMessage());
+            throw new IllegalStateException();
         }
         return parkingSpot;
     }
@@ -62,7 +63,7 @@ public class ParkingSpotNearEntranceStrategy implements ParkingAssignmentStrateg
         for(String key : mapTerminalCopy.keySet()){
             if(mapTerminalCopy.containsKey(key) && !mapTerminalCopy.get(key).contains(parkingSpot.getParkingSpot().getId())){
                 if(mapTerminalParkingSpot.containsKey(key) && mapTerminalParkingSpot.get(key) != null){
-                    System.out.println();
+                    System.out.println(mapTerminalParkingSpot.get(key).size());
                     mapTerminalParkingSpot.get(key).add(parkingSpot);
                 }else{
                     PriorityQueue<ParkingSportWithDistance> priorityQueue = new PriorityQueue<>(Comparator.comparing(ParkingSportWithDistance::getDist));
